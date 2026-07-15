@@ -179,4 +179,95 @@
 - Pricing-card height verification passed at 1280 × 844 and 390 × 844. Both desktop cards measure 600px and both mobile cards measure 400px; every direct content block remains within its card bounds. Pricing navigation and the mobile menu interaction pass, horizontal overflow is zero, and the console is clean.
 - 500px pricing-card verification passed at 1280 × 844. Both desktop cards measure exactly 500px and every direct content block remains within its card bounds. The 390px mobile cards remain 400px, the mobile menu interaction passes, horizontal overflow is zero, and the console is clean.
 
+## 2026-07-15 vertical-rhythm refinement
+
+### Evidence
+
+- Source visual truth: `/var/folders/ct/7pv083t966b53bs7gkyw568r0000gn/T/codex-clipboard-5826011f-8adc-4d27-9841-1c147d716809.png`
+- Implementation: `http://127.0.0.1:5173/`
+- Desktop comparison state: 994 × 987 CSS viewport, top-of-page state, matching the source image's 1988 × 1974 aspect ratio.
+- Mobile comparison state: 390 × 844, top-of-page, section-anchor, and open-navigation states.
+- Desktop implementation screenshot: `/Users/danielenicoletti/.codex/visualizations/2026/07/15/019f63f4-4094-7ef3-9f0b-00bd64f597eb/desktop-spacing-after-reference-ratio.png`
+- Mobile full-view before/after screenshots:
+  - `/Users/danielenicoletti/.codex/visualizations/2026/07/15/019f63f4-4094-7ef3-9f0b-00bd64f597eb/mobile-spacing-before-pass-2.png`
+  - `/Users/danielenicoletti/.codex/visualizations/2026/07/15/019f63f4-4094-7ef3-9f0b-00bd64f597eb/mobile-spacing-after-final.png`
+- Focused mobile screenshots:
+  - `/Users/danielenicoletti/.codex/visualizations/2026/07/15/019f63f4-4094-7ef3-9f0b-00bd64f597eb/mobile-spacing-after-top-final.png`
+  - `/Users/danielenicoletti/.codex/visualizations/2026/07/15/019f63f4-4094-7ef3-9f0b-00bd64f597eb/mobile-spacing-after-comparison-final.png`
+  - `/Users/danielenicoletti/.codex/visualizations/2026/07/15/019f63f4-4094-7ef3-9f0b-00bd64f597eb/mobile-spacing-after-steps-final.png`
+  - `/Users/danielenicoletti/.codex/visualizations/2026/07/15/019f63f4-4094-7ef3-9f0b-00bd64f597eb/mobile-spacing-after-pricing-final.png`
+
+### Findings
+
+- No actionable P0, P1, or P2 findings remain.
+- The source and implementation were inspected together at the same top-of-page state and aspect ratio. The desktop implementation intentionally uses less empty vertical space than the supplied reference, per the user's direction, while preserving the same two-column hierarchy, content rail, imagery, typography, colours, and copy.
+- The mobile before/after full views and focused section captures show denser transitions without clipping, overlap, or horizontal overflow.
+
+### Required fidelity surfaces
+
+- Fonts and typography: unchanged Fraunces, Inter, and Frank Ruhl Libre roles; sizes, weights, line heights, and wrapping remain readable at desktop and 390px.
+- Spacing and layout rhythm: desktop page height at 1440px reduced from 5066px to 4404px; mobile page height reduced from 4698px to 4314px. Hero lead-in, section transitions, card minimum heights, and internal padding now use a more consistent rhythm.
+- Colours and visual tokens: unchanged workspace, deep-green, accent-green, muted-grey, mint, and white tokens.
+- Image quality and asset fidelity: existing logo, assessment background/report, and steps imagery remain unchanged, correctly cropped, and sharp.
+- Copy and content: all visible navigation, hero, section, card, pricing, legal, and footer copy remains unchanged.
+
+### Comparison history
+
+1. Initial mobile review found remaining excess space inside comparison, preparation-step, and pricing cards after the earlier responsive pass.
+2. Reduced only the 460px-and-below spacing scale, then captured the full 390px page and focused top, comparison, steps, and pricing states. Post-fix evidence showed no clipped text or controls and zero horizontal overflow.
+3. The user expanded the request to desktop. Reduced the fixed hero height, repeated section margin-plus-padding stacks, visual/panel heights, card minimum heights, notice height, and footer spacing.
+4. Re-captured the desktop top at the source aspect ratio and compared both images together. The intended density change is visible, while the reference's layout hierarchy, fonts, colours, imagery, and content remain intact.
+
+### Engineering verification
+
+- `npm run build`: passed with Vite 6.4.2; 4573 modules transformed.
+- Browser-rendered page identity: `Threadline Health` at `http://127.0.0.1:5173/`.
+- Mobile menu opens, Pricing navigation lands at `#pricing`, and the pricing region is visible.
+- Console warnings/errors: none.
+- Horizontal overflow: none at 390px and 1440px.
+
+final result: passed
+
+## 2026-07-15 focused credibility-container update
+
+### Evidence
+
+- Source visual truth: `/Users/danielenicoletti/Desktop/Screenshot 2026-07-15 at 7.00.14 am.png`
+- Implementation: `http://127.0.0.1:5173/#clinicians`
+- Desktop viewport/state: 1748 × 1220, clinical-guidelines section aligned to the viewport.
+- Desktop implementation screenshot: `/Users/danielenicoletti/.codex/visualizations/2026/07/15/019f63f4-4094-7ef3-9f0b-00bd64f597eb/hero-guidelines-final-desktop.png`
+- Mobile implementation screenshot: `/Users/danielenicoletti/.codex/visualizations/2026/07/15/019f63f4-4094-7ef3-9f0b-00bd64f597eb/hero-guidelines-focused-final-mobile.png`
+- Full-view comparison evidence: the reference and final desktop implementation were opened together in one comparison input at the same 1748 × 1220 viewport.
+- Focused-region evidence: no additional crop was needed because the assessment image and the full credibility block are both clearly readable in the matched full-view comparison.
+
+### Findings
+
+- No actionable P0, P1, or P2 findings remain for the user-scoped change.
+- The reference uses a larger assessment-image composition, but the user explicitly directed that the existing hero image remain unchanged. The final implementation therefore preserves the pre-change 1360 × 640 visual, 1024 × 672 report frame, crop, radius, and shadow.
+- The only visual addition is the attached light-green credibility container. `Based on`, `Approved by`, and `Endorsed by` render in uppercase via CSS while preserving accessible sentence-case source text.
+
+### Required fidelity surfaces
+
+- Fonts and typography: labels use the existing Inter UI role at 16px/19.2px and weight 500; statements retain the existing body role at 18px/25.56px.
+- Spacing and layout rhythm: the hero image retains its previous dimensions and position. The credibility container uses the existing three-column grid and 48px vertical rhythm; mobile stacks the same content with existing section spacing.
+- Colors and visual tokens: the container uses the existing `--primary-light` surface token; labels use `--heading`; statements retain `--muted`.
+- Image quality and asset fidelity: the existing 1536 × 1024 textile asset and 1622 × 1752 report asset are unchanged, fully loaded, and rendered without horizontal overflow.
+- Copy and content: all three supplied statements match exactly, including `National` casing and `(NHMRC)`.
+
+### Comparison history
+
+1. An initial broad pass resized the assessment composition to match the supplied screenshot.
+2. The user clarified that the hero image must not change and narrowed the request to the light-green container plus uppercase labels.
+3. Restored the original hero image sizing, crop, radius, report treatment, and responsive rules; retained only the scoped credibility-container and label changes.
+4. Re-captured desktop and mobile states. Desktop hero metrics match the pre-change capture, mobile horizontal overflow is zero, both source assets load at their natural dimensions, and browser warnings/errors are empty.
+
+### Engineering verification
+
+- `npm run build`: passed with Vite 6.4.2; 4573 modules transformed.
+- Desktop container color: `rgb(230, 244, 237)` from the existing pale-green token.
+- Desktop label style: 16px/19.2px, weight 500, uppercase, deep green.
+- Desktop statement style: 18px/25.56px, existing muted body treatment.
+- Mobile viewport: 390px with `scrollWidth` 390px.
+- Console warnings/errors: none.
+
 final result: passed

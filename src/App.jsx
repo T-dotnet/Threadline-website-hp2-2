@@ -69,9 +69,18 @@ function Hero() {
 
 function AssessmentVisual() {
   const guidelineItems = [
-    "Based on Australia's national ADHD Clinical Practice Guidelines",
-    "Approved by Australia's National Health and Medical Research Council (NHMRC)",
-    "Endorsed by Australia's leading medical, psychology and allied health organisations",
+    {
+      label: "Based on",
+      text: "Australia's national ADHD Clinical Practice Guidelines",
+    },
+    {
+      label: "Approved by",
+      text: "Australia's National Health and Medical Research Council (NHMRC)",
+    },
+    {
+      label: "Endorsed by",
+      text: "Australia's leading medical, psychology and allied health organisations",
+    },
   ];
 
   return (
@@ -83,7 +92,12 @@ function AssessmentVisual() {
         </div>
       </div>
       <div className="guidelines content-rail">
-        {guidelineItems.map((item) => <p key={item}>{item}</p>)}
+        {guidelineItems.map((item) => (
+          <article className="guideline" key={item.label}>
+            <p className="guideline-label">{item.label}</p>
+            <p className="guideline-copy">{item.text}</p>
+          </article>
+        ))}
       </div>
     </section>
   );
